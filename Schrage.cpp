@@ -16,7 +16,7 @@ Schrage::~Schrage()
     delete[] tab;
 }
 
-uint32_t Schrage::permutuj(Kopiec kolejnoscZadanN)
+uint32_t Schrage::permutuj(Kopiec &kolejnoscZadanN)
 {
     uint32_t t = 0, k = 0, cmax = 0;
     Kopiec kolejnoscZadanQ(kolejnoscZadanN.size() );

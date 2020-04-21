@@ -15,7 +15,7 @@ class Schrage
     public:
         Schrage(uint32_t n);
         ~Schrage();
-        uint32_t permutuj(Kopiec kolejnoscZadanN);
+        uint32_t permutuj(Kopiec &kolejnoscZadanN);
         uint32_t cmaxtab();
 };
 
