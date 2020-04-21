@@ -7,7 +7,14 @@
 
 class Schrage
 {
+    private:
+        Zadanie* tab;
+        uint32_t max(uint32_t cmax, uint32_t propozycja);
+
     public:
-        uint32_t schrage(Kopiec kolejnoscZadanN, Kopiec kolejnoscZadanQ);
+        Schrage(uint32_t n);
+        ~Schrage();
+        uint32_t permutuj(Kopiec kolejnoscZadanN);
+        uint32_t cmaxtab();
 };
 

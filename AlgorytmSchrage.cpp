@@ -49,7 +49,6 @@ int main()
 	uint32_t N;
 	fstream data("schr.data.txt");
 	string tmp;
-	Schrage algorytm;
 
 	//pomija dupóki nie natrafi na np. data.000;
 	while (tmp != DATA_SET_000) data >> tmp;
@@ -58,7 +57,7 @@ int main()
 	data >> N;
 
 	Kopiec kolejnoscZadanN(N);
-	Kopiec kolejnoscZadanQ(N);
+	//Kopiec kolejnoscZadanQ(N);
 
 	//zczytuje parametry zadań
 	for (uint32_t i = 0; i < N; ++i)
@@ -68,7 +67,12 @@ int main()
 	    kolejnoscZadanN.push(r, Zadanie{ r,p,q,i });
 	}
 
-	
+	cout << "  Obliczanie kolejnosci... \n";
+	Schrage schrage(N);
+	schrage.permutuj(kolejnoscZadanN);
+	/*int cmtab = schrage.cmaxtab();
+	cout << "  Czas trwania Cmax: " << cmtab << endl;*/
+
 	//algorytm.schrage(kolejnoscZadanN, kolejnoscZadanQ);
 
 
