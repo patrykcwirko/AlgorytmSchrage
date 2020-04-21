@@ -2,27 +2,28 @@
 
 #include "Zadanie.h"
 
-const int MAXINT = -2147483647;
+const uint32_t MAXINT = 2147483647;
 
 struct qelement
 {
-	int prio;
-	Zadanie data;
+	uint32_t prio;
+	Zadanie dane;
 };
 
 class Kopiec
 {
 	private:
 		qelement* T;  // kopiec dynamiczny
-		int n;         // liczba elementów
+		uint32_t ilosc;         // liczba elementów
 
 	public:
-		Kopiec(int max_n);
+		Kopiec(uint32_t max_n);
 		~Kopiec();
 		bool empty();
 		Zadanie  front();
-		int  frontprio();
-		void push(int prio, Zadanie v);
+		uint32_t  frontPrio();
+		void push(uint32_t prio, Zadanie v);
 		void pop();
+		uint32_t size();
 };
 
