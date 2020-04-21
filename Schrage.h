@@ -8,6 +8,6 @@
 class Schrage
 {
     public:
-        uint32_t schrage();
+        uint32_t schrage(Kopiec kolejnoscZadanN, Kopiec kolejnoscZadanQ);
 };
 

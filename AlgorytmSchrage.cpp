@@ -7,7 +7,7 @@
 #include "Kopiec.h"
 #include "Zadanie.h"
 
-#define DATA_SET "data.002"
+#define DATA_SET_000 "data.000:"
 
 using namespace std;
 
@@ -44,32 +44,32 @@ void testKopca()
 
 int main()
 {
-	testKopca();
+	//testKopca();
 
-	//uint32_t N;
-	//fstream data("schr.data.txt");
-	//string tmp;
-	//Schrage algorytm;
+	uint32_t N;
+	fstream data("schr.data.txt");
+	string tmp;
+	Schrage algorytm;
 
-	//pomija dupuki nie natrafi na np. data.002;
-	//while (tmp != DATA_SET) data >> tmp;
+	//pomija dupóki nie natrafi na np. data.000;
+	while (tmp != DATA_SET_000) data >> tmp;
 
 	//zczytuje ilość zadań
-	//data >> N;
+	data >> N;
 
-	//Kopiec KolejnoscZadanN(N);
-	//Kopiec KolejnoscZadanQ(N);
+	Kopiec kolejnoscZadanN(N);
+	Kopiec kolejnoscZadanQ(N);
 
 	//zczytuje parametry zadań
-	//for (uint32_t i = 0; i < N; ++i)
-	//{
-	//    uint32_t r, p, q;
-	//    data >> r >> p >> q;
-	//    KolejnoscZadanN.push(r, Zadanie{ r,p,q,i });
-	//}
+	for (uint32_t i = 0; i < N; ++i)
+	{
+	    uint32_t r, p, q;
+	    data >> r >> p >> q;
+	    kolejnoscZadanN.push(r, Zadanie{ r,p,q,i });
+	}
 
 	
-	//algorytm.schrage();
+	//algorytm.schrage(kolejnoscZadanN, kolejnoscZadanQ);
 
 
 	cout << "Zrobione\n";
