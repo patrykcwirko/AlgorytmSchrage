@@ -57,7 +57,7 @@ int main()
 	data >> N;
 
 	Kopiec kolejnoscZadanN(N);
-	//Kopiec kolejnoscZadanQ(N);
+	Kopiec kolejnoscZadanQ(N);
 
 	//zczytuje parametry zadań
 	for (uint32_t i = 0; i < N; ++i)
@@ -65,6 +65,7 @@ int main()
 	    uint32_t r, p, q;
 	    data >> r >> p >> q;
 	    kolejnoscZadanN.push(r, Zadanie{ r,p,q,i });
+	    kolejnoscZadanQ.push(r, Zadanie{ r,p,q,i });
 	}
 
 	cout << "  Obliczanie kolejnosci... \n";
@@ -72,6 +73,13 @@ int main()
 	schrage.permutuj(kolejnoscZadanN);
 	int cmtab = schrage.cmaxtab();
 	cout << "  Czas trwania Cmax: " << cmtab << endl;
+
+	cout << "  Obliczanie kolejnosci... \n";
+	Schrage schrageZPodzialem(N);
+	schrageZPodzialem.permutujZPodzialem(kolejnoscZadanQ);
+	int cmtab = schrageZPodzialem.cmaxtab();
+	cout << "  Czas trwania Cmax: " << cmtab << endl;
+
 
 	//algorytm.schrage(kolejnoscZadanN, kolejnoscZadanQ);
 
