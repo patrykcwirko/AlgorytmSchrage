@@ -70,8 +70,8 @@ int main()
 	cout << "  Obliczanie kolejnosci... \n";
 	Schrage schrage(N);
 	schrage.permutuj(kolejnoscZadanN);
-	/*int cmtab = schrage.cmaxtab();
-	cout << "  Czas trwania Cmax: " << cmtab << endl;*/
+	int cmtab = schrage.cmaxtab();
+	cout << "  Czas trwania Cmax: " << cmtab << endl;
 
 	//algorytm.schrage(kolejnoscZadanN, kolejnoscZadanQ);
 

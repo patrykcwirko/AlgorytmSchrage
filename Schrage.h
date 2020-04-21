@@ -8,6 +8,7 @@
 class Schrage
 {
     private:
+        uint32_t rozmiar;
         Zadanie* tab;
         uint32_t max(uint32_t cmax, uint32_t propozycja);
 

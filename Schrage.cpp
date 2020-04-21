@@ -8,6 +8,7 @@ uint32_t Schrage::max(uint32_t cmax, uint32_t propozycja)
 Schrage::Schrage(uint32_t n)
 {
     tab = new Zadanie[n];
+    rozmiar = n;
 }
 
 Schrage::~Schrage()
@@ -24,7 +25,7 @@ uint32_t Schrage::permutuj(Kopiec kolejnoscZadanN)
         while ((!kolejnoscZadanN.empty()) && (kolejnoscZadanN.front().r <= t)) {
             z = kolejnoscZadanN.front();
             kolejnoscZadanN.pop();
-            kolejnoscZadanQ.push(z.q, z);
+            kolejnoscZadanQ.push(z.r, z);
         }
         if (kolejnoscZadanQ.empty()) {
             t = kolejnoscZadanN.front().r;
@@ -45,5 +46,10 @@ uint32_t Schrage::permutuj(Kopiec kolejnoscZadanN)
 
 uint32_t Schrage::cmaxtab()
 {
-    return uint32_t();
+    uint32_t i, t = 0, u = 0;
+    for (i = 0; i < rozmiar; i++) {
+        t = max(t, tab[i].r) + tab[i].p;
+        u = max(u, t + tab[i].q);
+    }
+    return u;
 }
