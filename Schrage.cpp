@@ -2,7 +2,7 @@
 
 uint32_t Schrage::max(uint32_t cmax, uint32_t propozycja)
 {
-    return uint32_t();
+    return (cmax <= propozycja) ? propozycja : cmax;
 }
 
 Schrage::Schrage(uint32_t n)
