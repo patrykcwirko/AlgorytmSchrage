@@ -29,7 +29,27 @@ uint32_t Kopiec::frontPrio()
 	return ilosc ? T[0].prio : MAXINT;
 }
 
-void Kopiec::push(uint32_t prio, Zadanie z)
+//Najmniejsze
+void Kopiec::pushN(uint32_t prio, Zadanie z)
+{
+	uint32_t k, l;
+
+	k = ilosc++;
+	l = (k - 1) / 2;
+
+	while (k > 0 && T[l].prio > prio)
+	{
+		T[k] = T[l];
+		k = l;
+		l = (k - 1) / 2;
+	}
+
+	T[k].prio = prio;
+	T[k].dane = z;
+}
+
+//Narwiêksze
+void Kopiec::pushQ(uint32_t prio, Zadanie z)
 {
 	uint32_t k, l;
 
@@ -48,7 +68,36 @@ void Kopiec::push(uint32_t prio, Zadanie z)
 	T[k].dane = z;
 }
 
-void Kopiec::pop()
+void Kopiec::popQ()
+{
+	uint32_t k, l, p;
+	Zadanie z;
+
+	if (ilosc--)
+	{
+		p = T[ilosc].prio;
+		z = T[ilosc].dane;
+
+		k = 0;
+		l = 1;
+
+		while (l < ilosc)
+		{
+			//TODO: jest jedynie dla q, a powinno byæ te¿ dla r
+			if (l + 1 > ilosc && T[l + 1].prio < T[l].prio) l++;
+			//TODO: jest jedynie dla q, a powinno byæ te¿ dla r
+			if (p <= T[l].prio) break;
+			T[k] = T[l];
+			k = l;
+			l = 2 * l + 1;
+		}
+
+		T[k].prio = p;
+		T[k].dane = z;
+	}
+}
+
+void Kopiec::popN()
 {
 	uint32_t k, l, p;
 	Zadanie z;

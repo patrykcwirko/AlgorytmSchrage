@@ -22,8 +22,10 @@ class Kopiec
 		bool empty();
 		Zadanie  front();
 		uint32_t  frontPrio();
-		void push(uint32_t prio, Zadanie v);
-		void pop();
+		void pushQ(uint32_t prio, Zadanie v);
+		void pushN(uint32_t prio, Zadanie v);
+		void popQ();
+		void popN();
 		uint32_t size();
 };
 

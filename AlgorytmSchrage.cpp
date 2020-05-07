@@ -14,27 +14,27 @@ using namespace std;
 void testKopca()
 {
 	Kopiec kopiec(5);
-	kopiec.push(1, Zadanie{ 1,1,1,1 });
-	kopiec.push(3, Zadanie{ 3,3,3,3 });
-	kopiec.push(4, Zadanie{ 2,2,2,2 });
-	kopiec.push(5, Zadanie{ 5,5,5,5 });
-	kopiec.push(4, Zadanie{ 4,4,4,4 });
+	kopiec.pushN(1, Zadanie{ 1,1,1,1 });
+	kopiec.pushN(3, Zadanie{ 3,3,3,3 });
+	kopiec.pushN(4, Zadanie{ 2,2,2,2 });
+	kopiec.pushN(5, Zadanie{ 5,5,5,5 });
+	kopiec.pushN(4, Zadanie{ 4,4,4,4 });
 	cout << "Pusty: " << kopiec.empty() << endl;
 	cout << "Ilość: " << kopiec.size() << endl;
 	cout << "FrontPrio: " << kopiec.frontPrio() << endl;
 	cout << "Front R: " << kopiec.front().r << endl;
 	//Wydrukować
-	kopiec.pop();
+	kopiec.popN();
 	cout << "Pusty: " << kopiec.empty() << endl;
 	cout << "Ilość: " << kopiec.size() << endl;
 	cout << "FrontPrio: " << kopiec.frontPrio() << endl;
 	cout << "Front R: " << kopiec.front().r << endl;	
-	kopiec.pop();
+	kopiec.popN();
 	cout << "Pusty: " << kopiec.empty() << endl;
 	cout << "Ilość: " << kopiec.size() << endl;
 	cout << "FrontPrio: " << kopiec.frontPrio() << endl;
 	cout << "Front R: " << kopiec.front().r << endl;
-	kopiec.pop();
+	kopiec.popN();
 	cout << "Pusty: " << kopiec.empty() << endl;
 	cout << "Ilość: " << kopiec.size() << endl;
 	cout << "FrontPrio: " << kopiec.frontPrio() << endl;
@@ -59,25 +59,27 @@ int main()
 	Kopiec kolejnoscZadanN(N);
 	Kopiec kolejnoscZadanQ(N);
 
+	Schrage schrage(N);
+	Schrage schrageZPodzialem(N);
+
 	//zczytuje parametry zadań
 	for (uint32_t i = 0; i < N; ++i)
 	{
 	    uint32_t r, p, q;
 	    data >> r >> p >> q;
-	    kolejnoscZadanN.push(r, Zadanie{ r,p,q,i });
-	    kolejnoscZadanQ.push(r, Zadanie{ r,p,q,i });
+	    kolejnoscZadanN.pushN(r, Zadanie{ r,p,q,i });
+	    kolejnoscZadanQ.pushQ(r, Zadanie{ r,p,q,i });
 	}
 
 	cout << "  Obliczanie kolejnosci... \n";
-	Schrage schrage(N);
+
 	schrage.permutuj(kolejnoscZadanN);
 	int cmtab = schrage.cmaxtab();
 	cout << "  Czas trwania Cmax: " << cmtab << endl;
 
-	cout << "  Obliczanie kolejnosci... \n";
-	Schrage schrageZPodzialem(N);
+	cout << "  Obliczanie kolejnosci... \n";	
 	schrageZPodzialem.permutujZPodzialem(kolejnoscZadanQ);
-	int cmtab = schrageZPodzialem.cmaxtab();
+	cmtab = schrageZPodzialem.cmaxtab();
 	cout << "  Czas trwania Cmax: " << cmtab << endl;
 
 

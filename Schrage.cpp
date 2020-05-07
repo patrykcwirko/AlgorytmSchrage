@@ -24,15 +24,15 @@ uint32_t Schrage::permutuj(Kopiec &kolejnoscZadanN)
     while (!kolejnoscZadanN.empty() || !kolejnoscZadanQ.empty()) {
         while ((!kolejnoscZadanN.empty()) && (kolejnoscZadanN.front().r <= t)) {
             z = kolejnoscZadanN.front();
-            kolejnoscZadanN.pop();
-            kolejnoscZadanQ.push(z.r, z);
+            kolejnoscZadanN.popN();
+            kolejnoscZadanQ.pushQ(z.r, z);
         }
         if (kolejnoscZadanQ.empty()) {
             t = kolejnoscZadanN.front().r;
         }
         else {
             z = kolejnoscZadanQ.front();
-            kolejnoscZadanQ.pop();
+            kolejnoscZadanQ.popQ();
             tab[k] = z;
             k++;
             t = t + z.p;
@@ -50,16 +50,15 @@ uint32_t Schrage::permutujZPodzialem(Kopiec& kolejnoscZadanN)
     while (!kolejnoscZadanN.empty() || !kolejnoscZadanQ.empty()) {
         while ((!kolejnoscZadanN.empty()) && (kolejnoscZadanN.front().r <= t)) {
             z = kolejnoscZadanN.front();
-            kolejnoscZadanN.pop();
-            kolejnoscZadanQ.push(z.q, z);
-            //TODO: podzial zadañ
+            kolejnoscZadanN.popN();
+            kolejnoscZadanQ.pushQ(z.r, z);
         }
         if (kolejnoscZadanQ.empty()) {
             t = kolejnoscZadanN.front().r;
         }
         else {
             z = kolejnoscZadanQ.front();
-            kolejnoscZadanQ.pop();
+            kolejnoscZadanQ.popQ();
             tab[k] = z;
             k++;
             t = t + z.p;
@@ -78,3 +77,14 @@ uint32_t Schrage::cmaxtab()
     }
     return u;
 }
+
+//cmax = 0
+// for(o=0,b=1; o<N; o++, b*=2)
+//  if(b&k)
+//      cmax += p[o]
+//
+// for(o=0,b=1; o<N; o++, b*=2)
+//  if(b&k)
+// kara dla operacji o w chwili cmax max(cmax - D[o],0)*w[o]
+// k=01011
+// 
