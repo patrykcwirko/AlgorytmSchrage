@@ -1,4 +1,5 @@
 #include "Schrage.h"
+#include <iostream>
 
 uint32_t Schrage::max(uint32_t cmax, uint32_t propozycja)
 {
@@ -23,9 +24,14 @@ uint32_t Schrage::permutuj(Kopiec &kolejnoscZadanN)
     Zadanie z;
     while (!kolejnoscZadanN.empty() || !kolejnoscZadanQ.empty()) {
         while ((!kolejnoscZadanN.empty()) && (kolejnoscZadanN.front().r <= t)) {
+            
+            std::cout << t << " | " << kolejnoscZadanN.front().r << std::endl;
+            kolejnoscZadanN.printBT("", "", 0);
+            std::cout << std::endl;
+
             z = kolejnoscZadanN.front();
             kolejnoscZadanN.popN();
-            kolejnoscZadanQ.pushQ(z.r, z);
+            kolejnoscZadanQ.pushQ(z.q, z);
         }
         if (kolejnoscZadanQ.empty()) {
             t = kolejnoscZadanN.front().r;
@@ -76,6 +82,15 @@ uint32_t Schrage::cmaxtab()
         u = max(u, t + tab[i].q);
     }
     return u;
+}
+
+void Schrage::ptrintKolejnosc()
+{
+    for (int i = 0; i < rozmiar; i++ )
+    {
+        std::cout << tab[i].o << " ";
+    }
+    std::cout << std::endl;
 }
 
 //cmax = 0
