@@ -17,7 +17,7 @@ Schrage::~Schrage()
     delete[] tab;
 }
 
-uint32_t Schrage::permutuj(Kopiec &kolejnoscZadanN)
+uint32_t Schrage::permutuj(KopiecOdw &kolejnoscZadanN)
 {
     uint32_t t = 0, k = 0, cmax = 0;
     Kopiec kolejnoscZadanQ(kolejnoscZadanN.size() );
@@ -30,7 +30,7 @@ uint32_t Schrage::permutuj(Kopiec &kolejnoscZadanN)
             std::cout << std::endl;
 
             z = kolejnoscZadanN.front();
-            kolejnoscZadanN.popN();
+            kolejnoscZadanN.pop();
             kolejnoscZadanQ.pushQ(z.q, z);
         }
         if (kolejnoscZadanQ.empty()) {

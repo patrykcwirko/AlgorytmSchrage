@@ -3,14 +3,6 @@
 #include "Zadanie.h"
 #include <string>
 
-const uint32_t MAXINT = 2147483647;
-
-struct qelement
-{
-	uint32_t prio;
-	Zadanie dane;
-};
-
 class Kopiec
 {
 	private:

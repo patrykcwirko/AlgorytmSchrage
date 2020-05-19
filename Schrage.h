@@ -3,6 +3,7 @@
 #include <cstdint>
 #include "Kopiec.h"
 #include "Zadanie.h"
+#include "KopiecOdw.h"
 
 
 class Schrage
@@ -15,7 +16,7 @@ class Schrage
     public:
         Schrage(uint32_t n);
         ~Schrage();
-        uint32_t permutuj(Kopiec &kolejnoscZadanN);
+        uint32_t permutuj(KopiecOdw&kolejnoscZadanN);
         uint32_t permutujZPodzialem(Kopiec &kolejnoscZadanN);
         uint32_t cmaxtab();
         void ptrintKolejnosc();

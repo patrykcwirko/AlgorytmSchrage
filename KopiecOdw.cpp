@@ -30,6 +30,16 @@ uint32_t KopiecOdw::size()
 	return ilosc;
 }
 
+Zadanie KopiecOdw::front()
+{
+	return ilosc ? T[1].dane : Zadanie{ MAXINT, MAXINT, MAXINT, MAXINT };
+}
+
+uint32_t KopiecOdw::frontPrio()
+{
+	return ilosc ? T[1].prio : MAXINT;
+}
+
 void KopiecOdw::printBT(std::string sp, std::string sn, int v)
 {
 
@@ -49,7 +59,7 @@ void KopiecOdw::printBT(std::string sp, std::string sn, int v)
 
 		s = s.substr(0, sp.length() - 2);
 
-		std::cout << s << sn << T[v].prio << std::endl;
+		std::cout << s << sn << T[v+1].prio << std::endl;
 
 		s = sp;
 		if (sn == cl) s[s.length() - 2] = ' ';
@@ -62,9 +72,9 @@ void KopiecOdw::ShiftDown(uint32_t id)
 	uint32_t next = 2 * id;
 	while (next <= ilosc)
 	{
-		if ((next < ilosc) && (T[next].prio < T[next + 1].prio))
+		if ((next < ilosc) && (T[next].prio > T[next + 1].prio))
 			next++;
-		if (T[id].prio < T[next].prio)
+		if (T[id].prio > T[next].prio)
 		{
 			swap(id, next);
 			id = next;
@@ -72,7 +82,7 @@ void KopiecOdw::ShiftDown(uint32_t id)
 		}
 		else
 		{
-			next = ilosc + 1;
+			next = ilosc +1;
 		}
 	}
 }
@@ -80,7 +90,7 @@ void KopiecOdw::ShiftDown(uint32_t id)
 void KopiecOdw::ShiftUp(uint32_t id)
 {
 	int next = id / 2;
-	while ((id > 1) && (T[next].prio < T[id].prio))
+	while ((id > 1) && (T[next].prio > T[id].prio))
 	{
 		swap(id, next);
 		id = next;

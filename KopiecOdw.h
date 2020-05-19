@@ -2,13 +2,7 @@
 #include "Zadanie.h"
 #include <string>
 
-const uint32_t MAXINT = 2147483647;
 
-struct qelement
-{
-	uint32_t prio;
-	Zadanie dane;
-};
 
 class KopiecOdw
 {
@@ -23,6 +17,8 @@ public:
 	~KopiecOdw();
 	bool empty();
 	uint32_t size();
+	Zadanie  front();
+	uint32_t  frontPrio();
 	void printBT(std::string sp, std::string sn, int v);
 	void ShiftDown(uint32_t id);
 	void ShiftUp(uint32_t id);

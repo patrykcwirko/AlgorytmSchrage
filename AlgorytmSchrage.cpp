@@ -8,7 +8,7 @@
 #include "Zadanie.h"
 #include "KopiecOdw.h"
 
-#define DATA_SET_000 "data.000:"
+#define DATA_SET_000 "data.001:"
 
 using namespace std;
 
@@ -76,12 +76,15 @@ int main()
 	    //kolejnoscZadanQ.pushQ(r, Zadanie{ r,p,q,i });
 	}
 
+	kolejnoscZadanN.Make();
+	kolejnoscZadanN.printBT("","",0);
+
 	cout << "  Obliczanie kolejnosci... \n";
 
-	//schrage.permutuj(kolejnoscZadanN);
-	//schrage.ptrintKolejnosc();
-	//int cmtab = schrage.cmaxtab();
-	//cout << "  Czas trwania Cmax: " << cmtab << endl;
+	schrage.permutuj(kolejnoscZadanN);
+	schrage.ptrintKolejnosc();
+	int cmtab = schrage.cmaxtab();
+	cout << "  Czas trwania Cmax: " << cmtab << endl;
 
 	//cout << "  Obliczanie kolejnosci... \n";	
 	//schrageZPodzialem.permutujZPodzialem(kolejnoscZadanQ);
