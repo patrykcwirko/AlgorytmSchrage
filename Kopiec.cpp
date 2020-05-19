@@ -4,9 +4,14 @@
 Kopiec::Kopiec(uint32_t max_n)
 {
 	//tworzenie pamiêci dla elementów kopca
-	T = new qelement[max_n];
+	T = new qelement[max_n + 1];
+	T[0].dane.r = -1;
+	T[0].dane.p = -1;
+	T[0].dane.q = -1;
+	T[0].dane.o = -1;
+	T[0].prio = -1;
 	// kopiec jest pusty
-	ilosc = 0;                  
+	ilosc = 0;
 }
 
 Kopiec::~Kopiec()
@@ -155,6 +160,71 @@ void Kopiec::printBT(std::string sp, std::string sn, int v)
 		s = sp;
 		if (sn == cl) s[s.length() - 2] = ' ';
 		printBT(s + cp, cl, 2 * v + 1);
+	}
+}
+
+Zadanie Kopiec::getElement(uint32_t id)
+{
+	return T[id].dane;
+}
+
+void Kopiec::ShiftDown(uint32_t id)
+{
+	uint32_t next = 2 * id;
+	while (next <= ilosc)
+	{
+		if ((next < ilosc) && (T[next].prio < T[next + 1].prio))
+			next++;
+		if (T[id].prio<T[next].prio)
+		{
+			swap(id, next);
+			id = next;
+			next *= 2;
+		}
+		else
+		{
+			next = ilosc + 1;
+		}
+	}
+}
+
+void Kopiec::ShiftUp(uint32_t id)
+{
+	int next = id / 2;
+	while ((id>1)&&(T[next].prio < T[id].prio))
+	{
+		swap(id, next);
+		id = next;
+		next /= 2;
+	}
+}
+
+void Kopiec::Make()
+{
+	for (uint32_t count = ilosc/2; count > 0; count--)
+	{
+		ShiftDown(1);
+	}
+}
+
+void Kopiec::push( uint32_t prio, Zadanie v)
+{
+	T[++ilosc] = qelement{prio, v};
+	ShiftDown(ilosc);
+}
+
+void Kopiec::pop()
+{
+	swap(1, ilosc--);
+	ShiftDown(1);
+}
+
+void Kopiec::HeapSort()
+{
+	Make();
+	while (ilosc>0)
+	{
+		pop();
 	}
 }
 

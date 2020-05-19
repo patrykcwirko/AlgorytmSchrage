@@ -6,8 +6,9 @@
 #include "Schrage.h"
 #include "Kopiec.h"
 #include "Zadanie.h"
+#include "KopiecOdw.h"
 
-#define DATA_SET_000 "data.001:"
+#define DATA_SET_000 "data.000:"
 
 using namespace std;
 
@@ -60,7 +61,7 @@ int main()
 	//zczytuje ilość zadań
 	data >> N;
 
-	Kopiec kolejnoscZadanN(N);
+	KopiecOdw kolejnoscZadanN(N);
 	Kopiec kolejnoscZadanQ(N);
 
 	Schrage schrage(N);
@@ -71,16 +72,16 @@ int main()
 	{
 	    uint32_t r, p, q;
 	    data >> r >> p >> q;
-	    kolejnoscZadanN.pushN(r, Zadanie{ r,p,q,i+1 });
+	    kolejnoscZadanN.push(r, Zadanie{ r,p,q,i+1 });
 	    //kolejnoscZadanQ.pushQ(r, Zadanie{ r,p,q,i });
 	}
 
 	cout << "  Obliczanie kolejnosci... \n";
 
-	schrage.permutuj(kolejnoscZadanN);
-	schrage.ptrintKolejnosc();
-	int cmtab = schrage.cmaxtab();
-	cout << "  Czas trwania Cmax: " << cmtab << endl;
+	//schrage.permutuj(kolejnoscZadanN);
+	//schrage.ptrintKolejnosc();
+	//int cmtab = schrage.cmaxtab();
+	//cout << "  Czas trwania Cmax: " << cmtab << endl;
 
 	//cout << "  Obliczanie kolejnosci... \n";	
 	//schrageZPodzialem.permutujZPodzialem(kolejnoscZadanQ);

@@ -31,10 +31,12 @@ class Kopiec
 		void popN();
 		uint32_t size();
 		void printBT(std::string sp, std::string sn, int v);
-
-		void insert(Zadanie t);
-		void ShiftUp(int id);
-		Zadanie extractMax();
-		void ShiftDown(int id);
+		Zadanie getElement(uint32_t id);
+		void ShiftDown(uint32_t id);
+		void ShiftUp(uint32_t id);
+		void Make();
+		void push(uint32_t prio, Zadanie v);
+		void pop();
+		void HeapSort();
 };
 

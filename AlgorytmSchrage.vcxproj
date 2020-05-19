@@ -149,10 +149,12 @@
   <ItemGroup>
     <ClCompile Include="AlgorytmSchrage.cpp" />
     <ClCompile Include="Kopiec.cpp" />
+    <ClCompile Include="KopiecOdw.cpp" />
     <ClCompile Include="Schrage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Kopiec.h" />
+    <ClInclude Include="KopiecOdw.h" />
     <ClInclude Include="Zadanie.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Schrage.h" />
