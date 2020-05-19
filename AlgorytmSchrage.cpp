@@ -8,7 +8,7 @@
 #include "Zadanie.h"
 #include "KopiecOdw.h"
 
-#define DATA_SET_000 "data.002:"
+#define DATA_SET_000 "data.000:"
 
 using namespace std;
 
@@ -86,11 +86,10 @@ int main()
 	int cmtab = schrage.cmaxtab();
 	cout << "  Czas trwania Cmax: " << cmtab << endl;
 
-	//cout << "  Obliczanie kolejnosci... \n";	
-	//schrageZPodzialem.permutujZPodzialem(kolejnoscZadanQ);
-	//schrageZPodzialem.ptrintKolejnosc();
-	//cmtab = schrageZPodzialem.cmaxtab();
-	//cout << "  Czas trwania Cmax: " << cmtab << endl;
+	cout << "  Obliczanie kolejnosci... \n";	
+	schrageZPodzialem.permutujZPodzialem(listaZadan);
+	cmtab = schrageZPodzialem.cmaxtab();
+	cout << "  Czas trwania Cmax: " << cmtab << endl;
 
 
 	//algorytm.schrage(kolejnoscZadanN, kolejnoscZadanQ);

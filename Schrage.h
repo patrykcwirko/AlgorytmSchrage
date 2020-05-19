@@ -36,7 +36,7 @@ class Schrage
         Schrage(uint32_t n);
         ~Schrage();
         uint32_t permutuj(Zadanie* tabZad);
-        uint32_t permutujZPodzialem(Kopiec &kolejnoscZadanN);
+        uint32_t permutujZPodzialem(Zadanie* tabZad);
         uint32_t cmaxtab();
         void ptrintKolejnosc();
 };

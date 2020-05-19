@@ -53,25 +53,43 @@ uint32_t Schrage::permutuj(Zadanie* tabZad)
     return cmax;
 }
 
-uint32_t Schrage::permutujZPodzialem(Kopiec& kolejnoscZadanN)
+uint32_t Schrage::permutujZPodzialem(Zadanie* tabZad)
 {
     uint32_t t = 0, k = 0, cmax = 0;
-    Kopiec kolejnoscZadanQ(kolejnoscZadanN.size());
-    Zadanie z;
+
+    priority_queue<Zadanie, vector<Zadanie>, PorownajG> kolejnoscZadanQ;
+    priority_queue<Zadanie, vector<Zadanie>, PorownajN> kolejnoscZadanN;
+    Zadanie z = Zadanie{0,0,0,0};
+    Zadanie tmp = Zadanie{ 0,0,0,0 };
+
+    for (int i = 0; i < rozmiar; i++)
+    {
+        kolejnoscZadanN.push(tabZad[i]);
+    }
+
     while (!kolejnoscZadanN.empty() || !kolejnoscZadanQ.empty()) {
-        while ((!kolejnoscZadanN.empty()) && (kolejnoscZadanN.front().r <= t)) {
-            z = kolejnoscZadanN.front();
-            kolejnoscZadanN.popN();
-            kolejnoscZadanQ.pushQ(z.r, z);
+        while ((!kolejnoscZadanN.empty()) && (kolejnoscZadanN.top().r <= t)) {
+
+            z = kolejnoscZadanN.top();
+            kolejnoscZadanN.pop();
+            kolejnoscZadanQ.push(z);
+
+            if (z.q > tmp.q)
+            {
+                tmp.p = t - z.r;
+                t = z.r;
+                if (tmp.p > 0) {
+                    kolejnoscZadanQ.push(tmp);
+                }
+            }
         }
         if (kolejnoscZadanQ.empty()) {
-            t = kolejnoscZadanN.front().r;
+            t = kolejnoscZadanN.top().r;
         }
         else {
-            z = kolejnoscZadanQ.front();
-            kolejnoscZadanQ.popQ();
-            tab[k] = z;
-            k++;
+            z = kolejnoscZadanQ.top();
+            kolejnoscZadanQ.pop();
+            tmp = z;
             t = t + z.p;
             cmax = max(cmax, t + z.q);
         }
