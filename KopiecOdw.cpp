@@ -59,7 +59,7 @@ void KopiecOdw::printBT(std::string sp, std::string sn, int v)
 
 		s = s.substr(0, sp.length() - 2);
 
-		std::cout << s << sn << T[v+1].prio << std::endl;
+		std::cout << s << sn << T[v+1].prio << "-" << T[v+1].dane.o << std::endl;
 
 		s = sp;
 		if (sn == cl) s[s.length() - 2] = ' ';
@@ -85,6 +85,7 @@ void KopiecOdw::ShiftDown(uint32_t id)
 			next = ilosc +1;
 		}
 	}
+	//printBT("","",0);
 }
 
 void KopiecOdw::ShiftUp(uint32_t id)
@@ -109,7 +110,7 @@ void KopiecOdw::Make()
 void KopiecOdw::push(uint32_t prio, Zadanie v)
 {
 	T[++ilosc] = qelement{ prio, v };
-	ShiftDown(ilosc);
+	ShiftUp(ilosc);
 }
 
 void KopiecOdw::pop()

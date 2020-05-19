@@ -62,7 +62,6 @@ void Kopiec::pushQ(uint32_t prio, Zadanie z)
 	k = ilosc++;
 	l = (k - 1) / 2;
 
-	//TODO: jest jedynie dla q, a powinno byæ te¿ dla r
 	while (k > 0 && T[l].prio < prio)
 	{
 		T[k] = T[l];

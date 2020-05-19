@@ -25,7 +25,7 @@ uint32_t Schrage::permutuj(KopiecOdw &kolejnoscZadanN)
     while (!kolejnoscZadanN.empty() || !kolejnoscZadanQ.empty()) {
         while ((!kolejnoscZadanN.empty()) && (kolejnoscZadanN.front().r <= t)) {
             
-            std::cout << t << " | " << kolejnoscZadanN.front().r << std::endl;
+            std::cout << k << "---" << t << " | " << kolejnoscZadanN.front().r << std::endl;
             kolejnoscZadanN.printBT("", "", 0);
             std::cout << std::endl;
 
