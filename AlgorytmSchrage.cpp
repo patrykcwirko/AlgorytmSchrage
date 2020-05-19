@@ -8,7 +8,7 @@
 #include "Zadanie.h"
 #include "KopiecOdw.h"
 
-#define DATA_SET_000 "data.001:"
+#define DATA_SET_000 "data.002:"
 
 using namespace std;
 
@@ -55,14 +55,17 @@ int main()
 	fstream data("schr.data.txt");
 	string tmp;
 
+	Zadanie* listaZadan;
+
 	//pomija dupóki nie natrafi na np. data.000;
 	while (tmp != DATA_SET_000) data >> tmp;
 
 	//zczytuje ilość zadań
 	data >> N;
 
-	KopiecOdw kolejnoscZadanN(N);
-	Kopiec kolejnoscZadanQ(N);
+	listaZadan = new Zadanie[N];
+
+	priority_queue<Zadanie, vector<Zadanie>, PorownajN> kolejnoscZadanN;
 
 	Schrage schrage(N);
 	Schrage schrageZPodzialem(N);
@@ -72,16 +75,13 @@ int main()
 	{
 	    uint32_t r, p, q;
 	    data >> r >> p >> q;
-	    kolejnoscZadanN.push(r, Zadanie{ r,p,q,i+1 });
+	    listaZadan[i] = Zadanie{ r,p,q,i+1 };
 	    //kolejnoscZadanQ.pushQ(r, Zadanie{ r,p,q,i });
 	}
 
-	kolejnoscZadanN.Make();
-	kolejnoscZadanN.printBT("","",0);
-
 	cout << "  Obliczanie kolejnosci... \n";
 
-	schrage.permutuj(kolejnoscZadanN);
+	schrage.permutuj(listaZadan);
 	schrage.ptrintKolejnosc();
 	int cmtab = schrage.cmaxtab();
 	cout << "  Czas trwania Cmax: " << cmtab << endl;
@@ -95,6 +95,7 @@ int main()
 
 	//algorytm.schrage(kolejnoscZadanN, kolejnoscZadanQ);
 
+	delete[] listaZadan;
 
 	cout << "Zrobione\n";
 }

@@ -1,10 +1,29 @@
 #pragma once
 
 #include <cstdint>
+#include <queue>
+#include <vector>
 #include "Kopiec.h"
 #include "Zadanie.h"
 #include "KopiecOdw.h"
 
+
+
+struct PorownajN
+{
+    bool operator()(Zadanie& a, Zadanie& b)
+    {
+        return a.r > b.r;
+    }
+};
+
+struct PorownajG
+{
+    bool operator()(Zadanie& a, Zadanie& b)
+    {
+        return a.q < b.q;
+    }
+};
 
 class Schrage
 {
@@ -16,7 +35,7 @@ class Schrage
     public:
         Schrage(uint32_t n);
         ~Schrage();
-        uint32_t permutuj(KopiecOdw&kolejnoscZadanN);
+        uint32_t permutuj(Zadanie* tabZad);
         uint32_t permutujZPodzialem(Kopiec &kolejnoscZadanN);
         uint32_t cmaxtab();
         void ptrintKolejnosc();

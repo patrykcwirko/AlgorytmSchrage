@@ -1,6 +1,8 @@
 #include "Schrage.h"
 #include <iostream>
 
+using namespace std;
+
 uint32_t Schrage::max(uint32_t cmax, uint32_t propozycja)
 {
     return (cmax <= propozycja) ? propozycja : cmax;
@@ -17,28 +19,31 @@ Schrage::~Schrage()
     delete[] tab;
 }
 
-uint32_t Schrage::permutuj(KopiecOdw &kolejnoscZadanN)
+uint32_t Schrage::permutuj(Zadanie* tabZad)
 {
     uint32_t t = 0, k = 0, cmax = 0;
-    Kopiec kolejnoscZadanQ(kolejnoscZadanN.size() );
+    priority_queue<Zadanie, vector<Zadanie>, PorownajG> kolejnoscZadanQ;
+    priority_queue<Zadanie, vector<Zadanie>, PorownajN> kolejnoscZadanN;
     Zadanie z;
-    while (!kolejnoscZadanN.empty() || !kolejnoscZadanQ.empty()) {
-        while ((!kolejnoscZadanN.empty()) && (kolejnoscZadanN.front().r <= t)) {
-            
-            std::cout << k << "---" << t << " | " << kolejnoscZadanN.front().r << std::endl;
-            kolejnoscZadanN.printBT("", "", 0);
-            std::cout << std::endl;
 
-            z = kolejnoscZadanN.front();
+    for (int i = 0; i < rozmiar; i++)
+    {
+        kolejnoscZadanN.push(tabZad[i]);
+    }
+
+    while (!kolejnoscZadanN.empty() || !kolejnoscZadanQ.empty()) {
+        while ((!kolejnoscZadanN.empty()) && (kolejnoscZadanN.top().r <= t)) {
+
+            z = kolejnoscZadanN.top();
             kolejnoscZadanN.pop();
-            kolejnoscZadanQ.pushQ(z.q, z);
+            kolejnoscZadanQ.push( z);
         }
         if (kolejnoscZadanQ.empty()) {
-            t = kolejnoscZadanN.front().r;
+            t = kolejnoscZadanN.top().r;
         }
         else {
-            z = kolejnoscZadanQ.front();
-            kolejnoscZadanQ.popQ();
+            z = kolejnoscZadanQ.top();
+            kolejnoscZadanQ.pop();
             tab[k] = z;
             k++;
             t = t + z.p;
